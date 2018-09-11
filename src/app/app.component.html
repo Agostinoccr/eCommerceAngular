@@ -11,24 +11,33 @@
 
   <hr>
   <!-- spese di spedizione -->
-  <div class="card card-body bg-light">
+  <div class="card card-body bg-light" *ngIf="cart.length > 0">
     <h3 class="mb-3">Shipping</h3>
     <div class="radio">
-      <label for=""><input type="radio" name="shipping"> DHL Express (&euro; 12.99)
+      <label for=""><input type="radio" name="shipping" (click)="addShipping(2.99)"> DHL Express (&euro; 2.99)
       </label>
     </div>
     <div class="radio">
-      <label for=""><input type="radio" name="shipping"> USPS Express (&euro; 32.99)
+      <label for=""><input type="radio" name="shipping" (click)="addShipping(9.99)"> USPS Express (&euro; 9.99)
       </label>
     </div>
     <div class="radio">
-      <label for=""><input type="radio" name="shipping"> Express Courier (&euro; 12.99)
+      <label for=""><input type="radio" name="shipping" (click)="addShipping(12.99)"> Express Courier (&euro; 12.99)
       </label>
     </div>
   </div>
 
   <!-- totale -->
-  <div class="text-right">
-    <h2>Totale &euro; 0.00</h2>
+  <div class="text-right mt-3">
+    <h2>Totale &euro; {{ total }}</h2>
   </div>
-</div>
+
+  <div class="row mt-5">
+      <div class="col-sm-12 text-right">
+          <button class="btn btn-danger btn-lg btn-block" type="button" (click)="emptyCart()">
+              Empty Cart
+          </button>
+      </div>
+  </div>
+
+</div> <!-- end container -->

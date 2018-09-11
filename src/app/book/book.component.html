@@ -2,16 +2,23 @@
   <div class="col-md-3">
       {{ theBook.name }}
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
       &euro; {{ theBook.price }}
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
       <span class="text-muted">{{ theBook.qty }} available</span>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-5">
       <div class="input-group">
         <input type="number" class="form-control" placeholder="qty..." [(ngModel)]="theBook.qty_chosen" name="">
-        <span class="btn btn-primary" type="button" (click)="addToCart(theBook)">Add to cart</span>
+        <span class="input-group-append">
+            <button class="btn btn-primary" type="button" (click)="addToCart(theBook)" [disabled]="isQtyValid()">
+              Add to Cart
+            </button>
+            <button class="btn btn-danger input-group-text" type="button">
+                Delete
+            </button>
+        </span>
       </div>
   </div>
 </div>

@@ -19,4 +19,18 @@ export class BookComponent implements OnInit {
     this.em.emit(book);
   }
 
+  isQtyValid() {
+
+    if (
+      this.theBook.qty_chosen > this.theBook.qty ||
+      this.theBook.qty_chosen == undefined ||
+      isNaN(Number(this.theBook.qty_chosen)) ||
+      this.theBook.qty_chosen <= 0
+    )
+      return true
+    else
+      return false
+
+  }
+
 }

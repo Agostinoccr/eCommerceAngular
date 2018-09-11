@@ -14,12 +14,47 @@ export class AppComponent {
   ]
 
   cart: any[] = []
+  total: number = 0.00;
 
   constructor() {  }
 
   updateCart(product) {
-    this.cart.push(product);
+
+    product.qty_chosen = Number(product.qty_chosen);
+
+    // is the product already in cart?
+    if (this.cart.length > 0) {
+      this.cart.forEach(e => {
+        if (e.isbn == product.isbn) e.qty_chosen += product.qty_chosen
+        // add to cart
+        else this.cart.push(Object.assign({}, product))
+      });
+  } else {
+    this.cart.push(Object.assign({}, product))
+  }
+    this.calculateTotal()
     console.log('Il carrello contiene: ', this.cart);
+
+  }
+
+  calculateTotal() {
+
+    this.total = 0.00;
+
+    this.cart.forEach(e => {
+      this.total += (e.qty_chosen * e.price)
+    });
+
+  }
+
+  emptyCart() {
+    this.cart = []
+    this.total = 0.00;
+  }
+
+  addShipping(price: number) {
+    this.calculateTotal();
+    this.total += price;
   }
 
 }
