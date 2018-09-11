@@ -3,14 +3,16 @@
   <input type="text" name="" placeholder="Cerca..." class="form-control">
 
   <hr>
-  <!-- <div *ngFor="let product of products">
-    {{ product.name }}
-  </div> -->
-  <app-book *ngFor="let product of products" [theBook]="product"></app-book>
+  <app-book
+    *ngFor="let product of products"
+    [theBook]="product"
+    (em)="updateCart(product)">
+  </app-book>
 
   <hr>
   <!-- spese di spedizione -->
   <div class="card card-body bg-light">
+    <h3 class="mb-3">Shipping</h3>
     <div class="radio">
       <label for=""><input type="radio" name="shipping"> DHL Express (&euro; 12.99)
       </label>
