@@ -1,15 +1,28 @@
 <div class="container">
 
-  <input type="text" name="" placeholder="Cerca..." class="form-control">
+  <input 
+    type="text" 
+    name="" 
+    placeholder="Cerca..." 
+    class="form-control"
+    [(ngModel)]="keySearch">
 
   <hr>
   <app-book
-    *ngFor="let product of products"
+    *ngFor="let product of products | filterProduct : keySearch"
     [theBook]="product"
     (em)="updateCart(product)">
   </app-book>
 
   <hr>
+  <!-- cart -->
+  <div class="card card-body bg-light mb-3" *ngIf="cart.length > 0">
+    <h3 class="mb-3">Cart</h3>
+      <ul>
+        <li *ngFor="let c of cart">{{ c.name }} - Prezzo unitario: <b>&euro; {{ c.price }}</b>. Quantit&agrave; scelta: {{ c.qty_chosen }}</li>
+      </ul>
+  </div>
+
   <!-- spese di spedizione -->
   <div class="card card-body bg-light" *ngIf="cart.length > 0">
     <h3 class="mb-3">Shipping</h3>
@@ -32,7 +45,7 @@
     <h2>Totale &euro; {{ total }}</h2>
   </div>
 
-  <div class="row mt-5">
+  <div class="row mt-5 mb-5">
       <div class="col-sm-12 text-right">
           <button class="btn btn-danger btn-lg btn-block" type="button" (click)="emptyCart()">
               Empty Cart

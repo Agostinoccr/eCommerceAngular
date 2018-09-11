@@ -9,11 +9,14 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './inc/navbar/navbar.component';
 import { BookComponent } from './book/book.component';
 
+import { FilterPipe } from './pipes/filterPipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    BookComponent
+    BookComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

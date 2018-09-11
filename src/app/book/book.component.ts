@@ -17,6 +17,8 @@ export class BookComponent implements OnInit {
 
   addToCart(book: any) {
     this.em.emit(book);
+    this.theBook.qty -= this.theBook.qty_chosen;
+    this.theBook.qty_chosen = undefined
   }
 
   isQtyValid() {

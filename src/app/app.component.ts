@@ -8,9 +8,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   products: any[] = [
-    {isbn : 'JK45JOL55', name :  'Il Conte di Montecristo', price : 19.99, qty : 5, qty_chosen: undefined},
-    {isbn : 'PH78KLD76', name :  'Dieci Piccoli Indiani', price : 9.99, qty : 7, qty_chosen : undefined},
-    {isbn : 'BD23HUL82', name :  'Notti Bianche', price : 14.99, qty : 3, qty_chosen : undefined}
+    {isbn : 'JK45JOL55', name :  'The Count of Monte Cristo', price : 19.99, qty : 5, qty_chosen: undefined},
+    {isbn : 'PH78KLD76', name :  'Ten Little Niggers', price : 9.99, qty : 7, qty_chosen : undefined},
+    {isbn : 'BD23HUL82', name :  '1984', price : 14.99, qty : 3, qty_chosen : undefined},
+    {isbn : 'SQ78GAO51', name :  'Divine Comedy', price : 24.99, qty : 9, qty_chosen : undefined}
   ]
 
   cart: any[] = []
@@ -18,7 +19,7 @@ export class AppComponent {
 
   constructor() {  }
 
-  updateCart(product) {
+  updateCart(product: any) {
 
     product.qty_chosen = Number(product.qty_chosen);
 
