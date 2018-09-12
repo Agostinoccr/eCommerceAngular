@@ -1,12 +1,17 @@
 <div class="row py-3">
   <div class="col-md-3">
-      {{ theBook.name }}
+      <em>{{ theBook.name }}</em>
   </div>
   <div class="col-md-2">
       &euro; {{ theBook.price }}
   </div>
   <div class="col-md-2">
-      <span class="text-muted">{{ theBook.qty }} available</span>
+      <span 
+        class="text-muted" 
+        [ngClass]="{'aFewLeft':theBook.qty < '5'}">
+        <span *ngIf="theBook.qty < '5'">Only </span>
+        {{ theBook.qty }} available
+    </span>
   </div>
   <div class="col-md-5">
       <div class="input-group">

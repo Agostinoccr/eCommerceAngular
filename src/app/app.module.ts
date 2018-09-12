@@ -11,13 +11,15 @@ import { NavbarComponent } from './inc/navbar/navbar.component';
 import { BookComponent } from './book/book.component';
 
 import { FilterPipe } from './pipes/filterPipe';
+import { FooterComponent } from './inc/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     BookComponent,
-    FilterPipe
+    FilterPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,6 @@ import { FilterPipe } from './pipes/filterPipe';
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [NavbarComponent, AppComponent]
+  bootstrap: [NavbarComponent, AppComponent, FooterComponent]
 })
 export class AppModule { }

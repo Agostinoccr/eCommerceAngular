@@ -1,9 +1,16 @@
+<!-- FIXME:
+ Radio default value
+ Empty cart restituisce i valori iniziali
+ Navbar responsive
+ Delete button
+ Alert se la ricerca non restituisce res -->
+
 <div class="container">
 
   <input
     type="text"
     name=""
-    placeholder="Cerca..."
+    placeholder="Search..."
     class="form-control"
     [(ngModel)]="keySearch">
 
@@ -14,12 +21,16 @@
     (em)="updateCart(product)">
   </app-book>
 
+  <div class="alert alert-danger" role="alert" *ngIf="!products">
+    This is a danger alert—check it out!
+  </div>
+
   <hr>
   <!-- cart -->
   <div class="card card-body bg-light mb-3" *ngIf="cart.length > 0">
-    <h3 class="mb-3">Cart</h3>
+    <h3 class="mb-3">Shopping Cart</h3>
       <ul>
-        <li *ngFor="let c of cart">{{ c.name }} - Prezzo unitario: <b>&euro; {{ c.price }}</b>. Quantit&agrave; scelta: {{ c.qty_chosen }}</li>
+        <li *ngFor="let c of cart"><em>{{ c.name }}</em> - Price: <b>&euro; {{ c.price }}</b>. Quantity Chosen: {{ c.qty_chosen }}</li>
       </ul>
   </div>
 
@@ -42,7 +53,7 @@
 
   <!-- totale -->
   <div class="text-right mt-3">
-    <h2>Totale &euro; {{ total }}</h2>
+    <h3>Total &euro; {{ total }}</h3>
   </div>
 
     <!-- Button trigger modal -->
@@ -82,11 +93,11 @@
           <ul class="mt-3">
             <li *ngFor="let c of cart">{{ c.name }}</li>
           </ul>
-          <p>Proceed with Checkout?</p>
+          <p>Proceed to Checkout?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="checkout()" data-dismiss="modal">Purchase</button>
+        <button type="button" class="btn btn-primary" (click)="checkout()" data-dismiss="modal">Buy</button>
       </div>
     </div>
   </div>
