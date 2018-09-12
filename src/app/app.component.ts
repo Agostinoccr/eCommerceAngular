@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Product } from './product';
 
 @Component({
   selector: 'app-ecommerce',
@@ -7,55 +9,62 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  products: any[] = [
-    {isbn : 'JK45JOL55', name :  'The Count of Monte Cristo', price : 19.99, qty : 5, qty_chosen: undefined},
-    {isbn : 'PH78KLD76', name :  'Ten Little Niggers', price : 9.99, qty : 7, qty_chosen : undefined},
-    {isbn : 'BD23HUL82', name :  '1984', price : 14.99, qty : 3, qty_chosen : undefined},
-    {isbn : 'SQ78GAO51', name :  'Divine Comedy', price : 24.99, qty : 9, qty_chosen : undefined}
-  ]
+  readonly ROOT_URL = './assets/api';
 
-  cart: any[] = []
+  products: Product[];
+
+  cart: any[] = [];
   total: number = 0.00;
 
-  constructor() {  }
+  constructor(private http: HttpClient) {
+    // GET books from db.json
+    this.http.get<Product[]>(this.ROOT_URL + '/db.json').subscribe(data => this.products = data)
+  }
 
   updateCart(product: any) {
 
     product.qty_chosen = Number(product.qty_chosen);
 
     // is the product already in cart?
-    if (this.cart.length > 0) {
-      this.cart.forEach(e => {
-        if (e.isbn == product.isbn) e.qty_chosen += product.qty_chosen
-        // add to cart
-        else this.cart.push(Object.assign({}, product))
-      });
-  } else {
-    this.cart.push(Object.assign({}, product))
-  }
-    this.calculateTotal()
+    let obj = this.cart.find( el => el.isbn == product.isbn);
+
+    if (obj) {
+      obj.qty_chosen += product.qty_chosen
+      } else {
+        this.cart.push(Object.assign({}, product))
+      }
+
+    this.calculateTotal();
     console.log('Il carrello contiene: ', this.cart);
 
   }
 
   calculateTotal() {
 
-    this.total = 0.00;
+ /*   Older method:
 
-    this.cart.forEach(e => {
-      this.total += (e.qty_chosen * e.price)
-    });
+      this.total = 0.00;
+      this.cart.forEach(e => {
+      this.total += (e.qty_chosen * e.price);
+      this.total = Math.round(this.total * 100) / 100;
+    }); */
 
+    this.total = Math.round(this.cart.reduce((tot, e) => tot += (e.qty_chosen * e.price), 0) * 100) / 100
   }
 
   emptyCart() {
-    this.cart = []
+    this.cart = [];
     this.total = 0.00;
   }
 
   addShipping(price: number) {
     this.calculateTotal();
-    this.total += price;
+    this.total = Math.round((this.total += price) * 100) / 100;
+  }
+
+  checkout() {
+    this.cart = [];
+    this.total = 0.00;
   }
 
 }
