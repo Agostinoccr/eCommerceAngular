@@ -24,7 +24,8 @@
       *ngFor="let product of result"
       [theBook]="product"
       [reset]="reset"
-      (em)="updateCart(product)">
+      (em)="updateCart(product)"
+      [dynamicdata]="dynamicdata">
     </app-book>
 
     <div class="alert alert-danger" role="alert" *ngIf="!result.length">
@@ -84,6 +85,9 @@
           </button>
       </div>
   </div>
+
+  <button type="button" (click)="start()">Start</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="purchase" tabindex="-1" role="dialog">

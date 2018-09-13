@@ -12,12 +12,12 @@
         *ngIf="isLeft">
       <span *ngIf="reset">
         <span *ngIf="theBook.qty < '5'">Only </span>
-        {{ theBook.qty }} available
+        qty normale: {{ theBook.qty }} available
       </span>
       <!-- qty temp: -->
       <span *ngIf="!reset">
           <span *ngIf="theBook.qty_temp < '5'">Only </span>
-          {{ theBook.qty_temp }} available
+          qty temp: {{ theBook.qty_temp }} available
       </span>
     </span>
 
@@ -38,3 +38,5 @@
       </div>
   </div>
 </div>
+
+{{ dynamicdata }}<br/>

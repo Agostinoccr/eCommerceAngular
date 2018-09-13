@@ -11,6 +11,9 @@ export class BookComponent implements OnInit {
   @Input() reset: boolean;
   @Output() em: EventEmitter<any> = new EventEmitter();
 
+  @Input() dynamicdata: string;
+
+
   isLeft: boolean = true;
 
   ngOnInit() { console.log('onInit: ' + this.reset) }
