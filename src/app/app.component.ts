@@ -23,7 +23,7 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {
     // GET books from db.json
-    this.http.get<Product[]>(this.ROOT_URL + '/db.json').subscribe(data => this.products = data)
+    this.http.get<Product[]>(this.ROOT_URL + '/db.json').subscribe(data => this.products = data);
   }
 
   updateCart(product: any) {
@@ -39,21 +39,13 @@ export class AppComponent {
         this.cart.push(Object.assign({}, product))
       }
 
-    this.calculateTotal();
+    //this.calculateTotal();
+    this.addShipping();
     console.log('Il carrello contiene: ', this.cart);
 
   }
 
   calculateTotal() {
-
- /*   Older method:
-
-      this.total = 0.00;
-      this.cart.forEach(e => {
-      this.total += (e.qty_chosen * e.price);
-      this.total = Math.round(this.total * 100) / 100;
-    }); */
-
     this.total = Math.round(this.cart.reduce((tot, e) => tot += (e.qty_chosen * e.price), 0) * 100) / 100
   }
 
@@ -63,7 +55,7 @@ export class AppComponent {
     this.reset = true;
   }
 
-  addShipping(price: number) {
+  addShipping(price: number = 2.99) {
     this.calculateTotal();
     this.total = Math.round((this.total += price) * 100) / 100;
   }
