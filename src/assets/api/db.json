@@ -4,9 +4,12 @@
       "name" :  "The Count of Monte Cristo",
       "price" : 19.99,
       "qty" : 5,
-      "qty_chosen": null
+      "qty_chosen": null,
+      "qty_temp": 5
     },
-    {"isbn" : "PH78KLD76", "name" :  "Ten Little Niggers", "price" : 9.99, "qty" : 7, "qty_chosen" : null},
-    {"isbn" : "BD23HUL82", "name" :  "1984", "price" : 14.99, "qty" : 3, "qty_chosen" : null},
-    {"isbn" : "SQ78GAO51", "name" :  "Divine Comedy", "price" : 24.99, "qty" : 9, "qty_chosen" : null}
+    {"isbn" : "PH78KLD76", "name" :  "The Murder of Roger Ackroyd", "price" : 9.99, "qty" : 7, "qty_chosen" : null, "qty_temp": 7},
+    {"isbn" : "BD23HUL82", "name" :  "1984", "price" : 14.99, "qty" : 3, "qty_chosen" : null, "qty_temp": 3},
+    {"isbn" : "SQ78GAO51", "name" :  "Divine Comedy", "price" : 24.99, "qty" : 9, "qty_chosen" : null, "qty_temp": 9},
+    {"isbn" : "WR90XQW13", "name" :  "Fight Club", "price" : 14.99, "qty" : 12, "qty_chosen" : null, "qty_temp": 12},
+    {"isbn" : "EQ76LIN94", "name" :  "Fight Club", "price" : 14.99, "qty" : 12, "qty_chosen" : null, "qty_temp": 12}
 ]

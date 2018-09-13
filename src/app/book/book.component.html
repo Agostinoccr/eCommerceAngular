@@ -6,12 +6,26 @@
       &euro; {{ theBook.price }}
   </div>
   <div class="col-md-2">
-      <span 
-        class="text-muted" 
-        [ngClass]="{'aFewLeft':theBook.qty < '5'}">
+      <span
+        class="text-muted"
+        [ngClass]="{'aFewLeft':theBook.qty < '5', 'aFewLeft':theBook.qty_temp < '5'}"
+        *ngIf="isLeft">
+      <span *ngIf="reset">
         <span *ngIf="theBook.qty < '5'">Only </span>
         {{ theBook.qty }} available
+      </span>
+      <!-- qty temp: -->
+      <span *ngIf="!reset">
+          <span *ngIf="theBook.qty_temp < '5'">Only </span>
+          {{ theBook.qty_temp }} available
+      </span>
     </span>
+
+    <span
+    class="aFewLeft"
+    *ngIf="!isLeft">
+    No one left!
+</span>
   </div>
   <div class="col-md-5">
       <div class="input-group">
@@ -19,9 +33,6 @@
         <span class="input-group-append">
             <button class="btn btn-primary" type="button" (click)="addToCart(theBook)" [disabled]="isQtyValid()">
               Add to Cart
-            </button>
-            <button class="btn btn-danger input-group-text" type="button">
-                Delete
             </button>
         </span>
       </div>

@@ -16,6 +16,8 @@ export class AppComponent {
   cart: any[] = [];
   total: number = 0.00;
 
+  reset: boolean = true;
+
   constructor(private http: HttpClient) {
     // GET books from db.json
     this.http.get<Product[]>(this.ROOT_URL + '/db.json').subscribe(data => this.products = data)
@@ -55,6 +57,8 @@ export class AppComponent {
   emptyCart() {
     this.cart = [];
     this.total = 0.00;
+    // this.reset = true;
+    console.log(this.reset)
   }
 
   addShipping(price: number) {

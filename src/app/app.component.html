@@ -1,9 +1,13 @@
 <!-- FIXME:
  Radio default value
  Empty cart restituisce i valori iniziali
- Navbar responsive
- Delete button
- Alert se la ricerca non restituisce res -->
+ // Navbar responsive
+ // Delete button
+ // Alert se la ricerca non restituisce res
+// Stile barra di ricerca (mf?)
+// Stile rialzo sezione libri
+// Only 0...
+-->
 
 <div class="container">
 
@@ -11,31 +15,34 @@
     type="text"
     name=""
     placeholder="Search..."
-    class="form-control"
+    class="form-control searchBar my-4"
     [(ngModel)]="keySearch">
 
-  <hr>
-  <app-book
-    *ngFor="let product of products | filterProduct : keySearch"
-    [theBook]="product"
-    (em)="updateCart(product)">
-  </app-book>
+  <div class="bookSection mb-5" *ngIf="(products | filterProduct: keySearch) as result">
 
-  <div class="alert alert-danger" role="alert" *ngIf="!products">
-    This is a danger alert—check it out!
+    <app-book
+      *ngFor="let product of result"
+      [theBook]="product"
+      [reset]="reset"
+      (em)="updateCart(product)">
+    </app-book>
+
+    <div class="alert alert-danger" role="alert" *ngIf="!result.length">
+      No books found...
+    </div>
+
   </div>
 
-  <hr>
   <!-- cart -->
-  <div class="card card-body bg-light mb-3" *ngIf="cart.length > 0">
+  <div class="card card-body bg-light mb-3 noBorder" *ngIf="cart.length > 0">
     <h3 class="mb-3">Shopping Cart</h3>
       <ul>
         <li *ngFor="let c of cart"><em>{{ c.name }}</em> - Price: <b>&euro; {{ c.price }}</b>. Quantity Chosen: {{ c.qty_chosen }}</li>
       </ul>
   </div>
 
-  <!-- spese di spedizione -->
-  <div class="card card-body bg-light" *ngIf="cart.length > 0">
+  <!-- shipping -->
+  <div class="card card-body bg-light noBorder" *ngIf="cart.length > 0">
     <h3 class="mb-3">Shipping</h3>
     <div class="radio">
       <label for=""><input type="radio" name="shipping" (click)="addShipping(2.99)"> DHL Express (&euro; 2.99)
