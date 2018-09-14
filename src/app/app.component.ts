@@ -16,11 +16,6 @@ export class AppComponent {
   cart: any[] = [];
   total: number = 0.00;
 
-  reset: boolean = true;
-
-  interval: any;
-  dynamicdata: string = 'This is dynamic data!';
-
   constructor(private http: HttpClient) {
     // GET books from db.json
     this.http.get<Product[]>(this.ROOT_URL + '/db.json').subscribe(data => this.products = data);
@@ -39,7 +34,6 @@ export class AppComponent {
         this.cart.push(Object.assign({}, product))
       }
 
-    //this.calculateTotal();
     this.addShipping();
     console.log('Il carrello contiene: ', this.cart);
 
@@ -49,10 +43,14 @@ export class AppComponent {
     this.total = Math.round(this.cart.reduce((tot, e) => tot += (e.qty_chosen * e.price), 0) * 100) / 100
   }
 
-  emptyCart() {
-    this.cart = [];
-    this.total = 0.00;
-    this.reset = true;
+  resetCart(product: any) {
+
+    let index = this.cart.findIndex(  el => el.isbn == product.isbn );
+    if (index > -1) this.cart.splice(index, 1)
+
+    this.calculateTotal();
+    console.log('Il carrello contiene: ', this.cart);
+
   }
 
   addShipping(price: number = 2.99) {
@@ -63,12 +61,7 @@ export class AppComponent {
   checkout() {
     this.cart = [];
     this.total = 0.00;
-  }
-
-  start() {
-    this.interval = setInterval(() => {
-      this.dynamicdata = new Date().toLocaleTimeString();
-    }, 1000);
+    location.reload()
   }
 
 }

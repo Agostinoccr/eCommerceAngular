@@ -9,21 +9,21 @@
       <span
         class="text-muted"
         [ngClass]="{'aFewLeft':theBook.qty < '5', 'aFewLeft':theBook.qty_temp < '5'}"
-        *ngIf="isLeft">
+        *ngIf="isLeft || reset">
       <span *ngIf="reset">
         <span *ngIf="theBook.qty < '5'">Only </span>
-        qty normale: {{ theBook.qty }} available
+         {{ theBook.qty }} available
       </span>
       <!-- qty temp: -->
       <span *ngIf="!reset">
           <span *ngIf="theBook.qty_temp < '5'">Only </span>
-          qty temp: {{ theBook.qty_temp }} available
+           {{ theBook.qty_temp }} available
       </span>
     </span>
 
     <span
     class="aFewLeft"
-    *ngIf="!isLeft">
+    *ngIf="!isLeft && !reset">
     No one left!
 </span>
   </div>
@@ -34,9 +34,11 @@
             <button class="btn btn-primary" type="button" (click)="addToCart(theBook)" [disabled]="isQtyValid()">
               Add to Cart
             </button>
+
+            <button class="btn btn-danger" type="button" (click)="emptyCart(theBook)" [disabled]="isDisable">
+              Empty
+            </button>
         </span>
       </div>
   </div>
 </div>
-
-{{ dynamicdata }}<br/>

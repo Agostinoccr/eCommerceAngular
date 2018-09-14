@@ -1,14 +1,3 @@
-<!-- FIXME:
- Radio default value
- Empty cart restituisce i valori iniziali
- // Navbar responsive
- // Delete button
- // Alert se la ricerca non restituisce res
-// Stile barra di ricerca (mf?)
-// Stile rialzo sezione libri
-// Only 0...
--->
-
 <div class="container">
 
   <input
@@ -23,9 +12,8 @@
     <app-book
       *ngFor="let product of result"
       [theBook]="product"
-      [reset]="reset"
       (em)="updateCart(product)"
-      [dynamicdata]="dynamicdata">
+      (empty)="resetCart(product)">
     </app-book>
 
     <div class="alert alert-danger" role="alert" *ngIf="!result.length">
@@ -59,35 +47,24 @@
     </div>
   </div>
 
-  <!-- totale -->
-  <div class="text-right mt-3">
+  <!-- total -->
+  <div class="text-right mt-4">
     <h3>Total &euro; {{ total }}</h3>
   </div>
 
     <!-- Button trigger modal -->
-    <div class="row mt-5 mb-3">
-      <div class="col-sm-12">
-        <button
-          type="button"
-          class="btn btn-primary btn-lg btn-block"
-          data-toggle="modal"
-          data-target="#purchase"
-          [disabled]="cart.length == 0">
-          Purchase
-        </button>
-      </div>
+  <div class="row mt-5 mb-5">
+    <div class="col-sm-12">
+      <button
+        type="button"
+        class="btn btn-primary btn-lg btn-block"
+        data-toggle="modal"
+        data-target="#purchase"
+        [disabled]="cart.length == 0">
+        Purchase
+      </button>
+    </div>
   </div>
-
-  <div class="row mb-5">
-      <div class="col-sm-12">
-          <button class="btn btn-danger btn-lg btn-block" type="button" (click)="emptyCart()">
-              Empty Cart
-          </button>
-      </div>
-  </div>
-
-  <button type="button" (click)="start()">Start</button>
-
 
 <!-- Modal -->
 <div class="modal fade" id="purchase" tabindex="-1" role="dialog">

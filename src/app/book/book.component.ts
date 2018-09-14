@@ -1,22 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss']
 })
-export class BookComponent implements OnInit {
+export class BookComponent {
 
   @Input() theBook: any;
-  @Input() reset: boolean;
+
   @Output() em: EventEmitter<any> = new EventEmitter();
-
-  @Input() dynamicdata: string;
-
+  @Output() empty: EventEmitter<any> = new EventEmitter();
 
   isLeft: boolean = true;
-
-  ngOnInit() { console.log('onInit: ' + this.reset) }
+  reset: boolean;
+  isDisable: boolean = true;
 
   constructor() { }
 
@@ -25,8 +23,17 @@ export class BookComponent implements OnInit {
     this.theBook.qty_temp = this.theBook.qty_temp - this.theBook.qty_chosen;
     this.theBook.qty_chosen = undefined;
     this.theBook.qty_temp == 0 ? this.isLeft = !this.isLeft : this.isLeft == true;
+
     this.reset = false;
-    console.log(this.reset)
+    this.isDisable = false;
+  }
+
+  emptyCart(book: any) {
+    this.theBook.qty_temp = this.theBook.qty;
+    this.reset = true;
+    this.isDisable = true;
+    this.isLeft = true;
+    this.empty.emit(book);
   }
 
   isQtyValid() {
