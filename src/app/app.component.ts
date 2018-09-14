@@ -13,6 +13,7 @@ export class AppComponent {
 
   products: Product[];
 
+  keySearch: string;
   cart: any[] = [];
   total: number = 0.00;
 
