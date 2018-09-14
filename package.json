@@ -1,6 +1,7 @@
 {
   "name": "ecommerce-angular6",
   "version": "0.0.0",
+  "outputPath": "dist/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 5000",
