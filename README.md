@@ -1,12 +1,13 @@
 # eCommerce-angular6
 
-Simple eCommerce built on Angular 6 and Bootstrap 4.
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
+Simple eCommerce built on Angular 6 and Bootstrap 4 (go to app: https://agostinoccr.github.io/ecommerce-angular6/)
 
 ## Built With
 
 * [Angular 6](http://www.angular.io/) - The JS framework used
-* [Bootstrap 4](hhttps://getbootstrap.com/) - Front-end component library
+* [Bootstrap 4](https://getbootstrap.com/) - Front-end component library
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 
 ## Development server
 
